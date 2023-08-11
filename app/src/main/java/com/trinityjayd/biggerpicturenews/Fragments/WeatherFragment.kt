@@ -38,7 +38,7 @@ class WeatherFragment : Fragment() {
                         description.text = it.WeatherText
                     }
                 } else {
-                    Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Error Weather", Toast.LENGTH_SHORT).show()
                 }
             }
         }
