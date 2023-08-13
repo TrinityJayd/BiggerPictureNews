@@ -1,7 +1,6 @@
 package com.trinityjayd.biggerpicturenews.Fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import com.trinityjayd.biggerpicturenews.ApiClients.CurrencyApiClient
+import com.trinityjayd.biggerpicturenews.BuildConfig
 import com.trinityjayd.biggerpicturenews.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,9 +27,9 @@ class CurrencyFragment : Fragment() {
             var base = arguments?.getString("baseCurrency")
             var target = arguments?.getString("targetCurrency")
 
-            var response = service.getExchangeRates("USD","ZAR")
+            var response = service.getExchangeRates(BuildConfig.CURRENCY_API_KEY,"USD","ZAR")
             if (base != null && target != null) {
-                response = service.getExchangeRates(base, target)
+                response = service.getExchangeRates(BuildConfig.CURRENCY_API_KEY,base, target)
             }else{
                 base = "USD"
                 target = "ZAR"

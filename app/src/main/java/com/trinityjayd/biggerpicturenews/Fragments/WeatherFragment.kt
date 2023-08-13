@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import com.trinityjayd.biggerpicturenews.ApiClients.WeatherApiClient
+import com.trinityjayd.biggerpicturenews.BuildConfig
 import com.trinityjayd.biggerpicturenews.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -29,7 +30,7 @@ class WeatherFragment : Fragment() {
 
         val service = WeatherApiClient.getClient()
         CoroutineScope(Dispatchers.IO).launch {
-            val response = service.getWeather()
+            val response = service.getWeather(BuildConfig.WEATHER_API_KEY)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     val weatherResponse = response.body()?.get(0)

@@ -1,7 +1,6 @@
 package com.trinityjayd.biggerpicturenews.Fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +11,7 @@ import android.widget.Button
 import android.widget.Spinner
 import android.widget.Toast
 import com.trinityjayd.biggerpicturenews.ApiClients.CurrencyApiClient
+import com.trinityjayd.biggerpicturenews.BuildConfig
 import com.trinityjayd.biggerpicturenews.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -34,7 +34,7 @@ class ExchangeRateFragment : Fragment() {
 
         val service = CurrencyApiClient.getClient()
         CoroutineScope(Dispatchers.IO).launch {
-            val response = service.getCurrencies()
+            val response = service.getCurrencies(BuildConfig.CURRENCY_API_KEY)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
@@ -104,7 +104,6 @@ class ExchangeRateFragment : Fragment() {
         saveBtn.setOnClickListener {
             val currencyFragment = CurrencyFragment()
             currencyFragment.arguments = currencySelection
-            Log.d("ExchangeRateFragment", "currencySelection: $currencySelection")
 
             val fragmentManager = requireActivity().supportFragmentManager
 
