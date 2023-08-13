@@ -16,7 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class NewsFragment : Fragment() {
+class NewsFragment : Fragment(), OnItemClickListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: NewsItemRecyclerViewAdapter
@@ -43,7 +43,7 @@ class NewsFragment : Fragment() {
                 responseBody?.articles?.let { newsList ->
                     withContext(Dispatchers.Main) {
                         recyclerView.layoutManager = LinearLayoutManager(context)
-                        adapter = NewsItemRecyclerViewAdapter(newsList)
+                        adapter = NewsItemRecyclerViewAdapter(newsList, this@NewsFragment)
                         recyclerView.adapter = adapter
                         adapter.notifyDataSetChanged()
                     }
@@ -55,7 +55,16 @@ class NewsFragment : Fragment() {
 
     }
 
-
+    override fun onItemClick(article: Article) {
+        val bundle = Bundle()
+        bundle.putParcelable("article", article)
+        val articleFragment = ArticleFragment()
+        articleFragment.arguments = bundle
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.newsAndRateContainer, articleFragment)
+            .addToBackStack(null)
+            .commit()
+    }
 
 
 }

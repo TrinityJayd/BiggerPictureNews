@@ -8,7 +8,8 @@ import com.trinityjayd.biggerpicturenews.Models.NewsModels.Article
 import com.trinityjayd.biggerpicturenews.databinding.NewsFragmentItemBinding
 
 class NewsItemRecyclerViewAdapter(
-    private val articles: List<Article>
+    private val articles: List<Article>,
+    private val itemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<NewsItemRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -23,6 +24,10 @@ class NewsItemRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val article = articles[position]
         holder.bind(article)
+
+        holder.itemView.setOnClickListener {
+            itemClickListener.onItemClick(article)
+        }
     }
 
     override fun getItemCount(): Int = articles.size
@@ -38,3 +43,8 @@ class NewsItemRecyclerViewAdapter(
         }
     }
 }
+
+interface OnItemClickListener {
+    fun onItemClick(article: Article)
+}
+
