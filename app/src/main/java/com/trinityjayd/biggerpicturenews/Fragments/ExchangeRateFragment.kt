@@ -123,6 +123,7 @@ class ExchangeRateFragment : Fragment() {
     }
 
     private fun savePreferences(baseCurrency : String, targetCurrency : String) {
+        auth = FirebaseAuth.getInstance()
         val uid = auth.currentUser?.uid
         val database = Firebase.database.reference
 
