@@ -12,10 +12,13 @@ interface CurrencyApi {
         @Query("apikey") apiKey: String
     ): Response<CurrencyApiResponse>
 
+
     @GET("v1/latest")
     suspend fun getExchangeRates(
         @Query("apikey") apiKey: String,
         @Query("base_currency") baseCurrency: String,
-        @Query("currencies") currencies: String
+        @Query("currencies") targetCurrency: String
     ): Response<ExchangeRateResponse>
+
+
 }

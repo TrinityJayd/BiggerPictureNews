@@ -55,12 +55,20 @@
             android:textSize="16sp"
             android:layout_marginTop="16dp"/>
 
+
         <TextView
-            android:id="@+id/contentTextView"
-            android:layout_width="match_parent"
+            android:id="@+id/linkTextView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Open in browser"
+            android:autoLink="web"
+            android:textColor="@color/linkColor"
             android:textSize="16sp"
             android:layout_marginTop="16dp"/>
+
+
+
+
 
     </LinearLayout>
 

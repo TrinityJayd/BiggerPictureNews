@@ -10,6 +10,9 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.trinityjayd.biggerpicturenews.ApiClients.CurrencyApiClient
 import com.trinityjayd.biggerpicturenews.BuildConfig
 import com.trinityjayd.biggerpicturenews.R
@@ -20,6 +23,7 @@ import kotlinx.coroutines.withContext
 
 class ExchangeRateFragment : Fragment() {
 
+    private lateinit var auth: FirebaseAuth
     private lateinit var currencySelection: Bundle
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -105,6 +109,8 @@ class ExchangeRateFragment : Fragment() {
             val currencyFragment = CurrencyFragment()
             currencyFragment.arguments = currencySelection
 
+            savePreferences(currencySelection.getString("baseCurrency").toString(), currencySelection.getString("targetCurrency").toString())
+
             val fragmentManager = requireActivity().supportFragmentManager
 
             fragmentManager.beginTransaction().apply {
@@ -114,5 +120,15 @@ class ExchangeRateFragment : Fragment() {
         }
 
         return view
+    }
+
+    private fun savePreferences(baseCurrency : String, targetCurrency : String) {
+        val uid = auth.currentUser?.uid
+        val database = Firebase.database.reference
+
+        if (uid != null) {
+            database.child(uid).child("currencyPreferences").child("baseCurrency").setValue(baseCurrency)
+            database.child(uid).child("currencyPreferences").child("targetCurrency").setValue(targetCurrency)
+        }
     }
 }

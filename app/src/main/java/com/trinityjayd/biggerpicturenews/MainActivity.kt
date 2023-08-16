@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.trinityjayd.biggerpicturenews.Fragments.CurrencyFragment
 import com.trinityjayd.biggerpicturenews.Fragments.ExchangeRateFragment
 import com.trinityjayd.biggerpicturenews.Fragments.NewsFragment
+import com.trinityjayd.biggerpicturenews.Fragments.SettingsFragment
 import com.trinityjayd.biggerpicturenews.Fragments.WeatherFragment
 
 
@@ -30,11 +31,12 @@ class MainActivity : AppCompatActivity() {
             commit()
         }
 
-        val changeCurrency = findViewById<Button>(R.id.changeCurrencyButton)
-        changeCurrency.setOnClickListener() {
-            val exchangeRateFragment = ExchangeRateFragment()
+
+        val settings = findViewById<Button>(R.id.settingsButton)
+        settings.setOnClickListener() {
+            val settingsFragment = SettingsFragment()
             supportFragmentManager.beginTransaction().apply {
-                replace(R.id.newsAndRateContainer, exchangeRateFragment)
+                replace(R.id.newsAndRateContainer, settingsFragment)
                 commit()
             }
         }

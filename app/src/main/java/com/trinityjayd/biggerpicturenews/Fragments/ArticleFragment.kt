@@ -1,5 +1,7 @@
 package com.trinityjayd.biggerpicturenews.Fragments
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -37,7 +39,14 @@ class ArticleFragment : Fragment() {
             view.findViewById<TextView>(R.id.sourceTextView).text = article.source.name
             view.findViewById<TextView>(R.id.publishedAtTextView).text = article.publishedAt
             view.findViewById<TextView>(R.id.descriptionTextView).text = article.description
-            view.findViewById<TextView>(R.id.contentTextView).text = article.content
+            view.findViewById<TextView>(R.id.linkTextView).setOnClickListener{
+                val url = article.url
+                if (url != null) {
+                    // Open the article in the browser
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    startActivity(intent)
+                }
+            }
         }
     }
 }

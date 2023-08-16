@@ -43,7 +43,7 @@ class CurrencyFragment : Fragment() {
                         val roundedExchangeRate = String.format("%.1f", exchangeRate)
 
                         val comparison = view.findViewById<TextView>(R.id.currencyComparisonTextView)
-                        comparison.text = "1 $base = $roundedExchangeRate $target"
+                        comparison.text = "1 $base\n$roundedExchangeRate $target"
                     }
                 }else{
                     Toast.makeText(context, "Error Currency", Toast.LENGTH_SHORT).show()
