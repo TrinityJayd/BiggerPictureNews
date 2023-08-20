@@ -66,4 +66,3 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-**Note:** The above README is a template generated based on the information you provided. You might need to tailor and refine it according to your project's specifics and your preferred style.
