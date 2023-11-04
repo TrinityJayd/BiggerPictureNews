@@ -2,6 +2,8 @@
 
 Bigger Picture News is a versatile mobile app designed to provide users with a comprehensive view of information they care about the most. From real-time currency exchange rates to the latest news articles and local weather forecasts, this app serves as a one-stop solution for staying updated and informed. With a modular design and user-friendly interface, Bigger Picture News makes it easy for users to access personalized content effortlessly.
 
+[Download on Google Play](https://play.google.com/store/apps/details?id=com.trinityjayd.biggerpicturenews&pcampaignid=web_share)
+
 ## Features
 
 - **Customizable Exchange Rate**: Users can personalize their experience by selecting their preferred currency exchange rate (ZAR/USD) and stay informed about currency fluctuations.
